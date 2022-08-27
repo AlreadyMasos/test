@@ -20,5 +20,6 @@ class CreateFilePage(BasePage):
 
     def insert_file_text(self):
         file_text = set_random_string(30)
+        self.TEXTAREA.click()
         self.TEXTAREA.send_text(file_text)
         return file_text
