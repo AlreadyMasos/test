@@ -1,6 +1,11 @@
 import requests
 from page_objects.LoginPage import LoginPage
 from page_objects.RegisterPage import RegisterPage
+from page_objects.UserPage import UserPage
+from page_objects.CreateRepoPage import CreateRepoPage
+from page_objects.RepoPage import RepoPage
+from page_objects.CreateFilePage import CreateFilePage
+from config.conftest import start_test
 
 
 def test(start_test):
@@ -16,7 +21,25 @@ def test(start_test):
     assert register_page.is_opened(), 'reg page not opened'
 
     register_page.insert_email()
-    register_page.insert_usr_name()
+    usr_name = register_page.insert_usr_name()
     register_page.insert_password()
     register_page.click_create_page_button()
+    user_page = UserPage()
+    assert user_page.is_opened(), 'usr page not opened'
+    assert user_page.check_correct_user(usr_name), 'wrong user name'
 
+    user_page.click_new_repo()
+    create_repo_page = CreateRepoPage()
+    assert create_repo_page.is_opened(), 'create repo page not opened'
+    assert create_repo_page.check_correct_owner(usr_name), 'wrong repo owner'
+
+    create_repo_page.insert_repo_name()
+    create_repo_page.click_create_repo()
+    repo_page = RepoPage()
+    assert repo_page.is_opened(), 'repo page not opened'
+
+    repo_page.click_new_file()
+    create_file_page = CreateFilePage()
+    create_file_page.is_opened(), 'create file page not opened'
+    file_name = create_file_page.insert_file_name()
+    file_text = create_file_page.insert_file_text()

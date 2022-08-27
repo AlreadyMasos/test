@@ -1,6 +1,5 @@
 import os
 import pytest
-import requests
 from time import sleep
 from framework.browser.browser import Browser
 
@@ -9,6 +8,8 @@ from framework.browser.browser import Browser
 def start_test():
     os.system('docker-compose up -d')
     sleep(10)
+    Browser().set_up_driver()
+    Browser().maximize()
     Browser().set_url('http://localhost:3000/user/login')
 
 
