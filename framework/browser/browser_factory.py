@@ -32,7 +32,8 @@ class BrowserFactory:
                                                         options=chrome_options, capabilities=capabilities,
                                                         test_name=test_name)
             else:
-                return webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options,
+                return webdriver.Chrome(ChromeDriverManager().install(),
+                                        options=chrome_options,
                                         desired_capabilities=capabilities)
 
         elif BrowserConfig.BROWSER == browsers.BROWSER_FIREFOX:
