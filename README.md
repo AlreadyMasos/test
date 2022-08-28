@@ -1,4 +1,5 @@
-#docker + pytest + selenium
+*docker + pytest + selenium*
+
 Для корректной работы необходимо установить:
 - [docker desktop](https://www.docker.com/products/docker-desktop/)
 - [python последней версии](https://www.python.org/downloads/)
