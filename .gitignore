@@ -132,6 +132,3 @@ dmypy.json
 
 # Logs from logging
 /tests/logs.txt
-
-/mysql
-/gitea

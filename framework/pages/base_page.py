@@ -29,6 +29,3 @@ class BasePage:
         self.wait_page_to_load()
         Label(self.search_condition, self.locator, self.page_name).wait_for_is_visible()
 
-    def refresh_page(self):
-        Logger.info("Обновление страницы " + self.page_name)
-        Browser.get_browser().refresh_page()

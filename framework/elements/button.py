@@ -14,6 +14,3 @@ class Button(BaseElement):
     def __call__(self, sublocator, new_name_of=None):
         new_element = super(Button, self).__call__(sublocator=sublocator, new_name_of=new_name_of)
         return Button(new_element.get_search_condition(), new_element.get_locator(), new_element.get_name())
-
-    def get_element_type(self):
-        return "Button"

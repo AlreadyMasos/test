@@ -157,7 +157,8 @@ class Browser(metaclass=Singleton):
             Logger.warning(error_msg)
             raise TimeoutException(error_msg)
 
-    def is_wait_successful(self, wait_function, *args):
+    @staticmethod
+    def is_wait_successful(wait_function, *args):
         try:
             wait_function(*args)
         except TimeoutException:

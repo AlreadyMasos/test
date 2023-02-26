@@ -21,20 +21,3 @@ def get_random_password_and_email():
         domain += lower_alphabet[random.randint(0, len(lower_alphabet) - 1)]
 
     return password, email, domain
-
-
-def random_list_element(given_list, count):
-    result_list = []
-    working_list = given_list
-    for i in range(count):
-        idx = random.randint(0, len(working_list) - 1)
-        result_list.append(working_list[idx])
-        working_list.remove(working_list[idx])
-    return result_list
-
-
-def generate_random_list(size):
-    random_list = list()
-    for i in range(size):
-        random_list.append(random.randint(0, 2))
-    return random_list
