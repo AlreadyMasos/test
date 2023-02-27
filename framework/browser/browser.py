@@ -38,8 +38,7 @@ class Browser(metaclass=Singleton):
         self.__web_driver[browser_key] = \
             BrowserFactory.get_browser_driver(capabilities=capabilities,
                                               is_incognito=is_incognito,
-                                              enable_performance_logging=enable_performance_logging,
-                                              test_name=test_name, grid_port=grid_port)
+                                              enable_performance_logging=enable_performance_logging)
         self.__web_driver[browser_key].implicitly_wait(Waits.IMPLICITLY_WAIT_SEC)
         self.__web_driver[browser_key].set_page_load_timeout(Waits.PAGE_LOAD_TIMEOUT_SEC)
         self.__web_driver[browser_key].set_script_timeout(Waits.SCRIPT_TIMEOUT_SEC)
