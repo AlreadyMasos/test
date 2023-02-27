@@ -2,9 +2,6 @@
 import logging
 
 
-# from os import path, makedirs
-
-
 def new_line(log_method_function):
     def add_new_line(message):
         log_method_function(message=message)
