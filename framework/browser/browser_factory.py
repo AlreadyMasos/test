@@ -7,7 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
 from framework.constants import browsers
-from tests.config.browser import BrowserConfig, Grid
+from tests.config.browser import BrowserConfig
 
 
 class BrowserFactory:
@@ -26,11 +26,6 @@ class BrowserFactory:
                 chrome_options.add_argument("--incognito")
             if enable_performance_logging:
                 capabilities['loggingPrefs'] = {'performance': 'ALL'}
-            if Grid.USE_GRID:
-                return BrowserFactory.get_remote_driver(browser_name=BrowserConfig.BROWSER,
-                                                        browser_version=BrowserConfig.CHROME_VERSION,
-                                                        options=chrome_options, capabilities=capabilities,
-                                                        test_name=test_name)
             else:
                 return webdriver.Chrome(ChromeDriverManager().install(),
                                         options=chrome_options,
@@ -45,24 +40,7 @@ class BrowserFactory:
             if enable_performance_logging:
                 open("perfLog.txt", "w").close()
                 environ["MOZ_LOG"] = "timestamp,sync,nsHttp:3"
-            if Grid.USE_GRID:
-                return BrowserFactory.get_remote_driver(browser_name=BrowserConfig.BROWSER,
-                                                        browser_version=BrowserConfig.FIREFOX_VERSION,
-                                                        browser_profile=firefox_profile, capabilities=capabilities,
-                                                        test_name=test_name, grid_port=grid_port)
             else:
                 return webdriver.Firefox(executable_path=GeckoDriverManager().install(),
                                          firefox_profile=firefox_profile,
                                          desired_capabilities=capabilities, options=firefox_options)
-
-    @staticmethod
-    def get_remote_driver(browser_name, browser_version, options=None, browser_profile=None, capabilities=None,
-                          test_name=None, grid_port=None):
-        if capabilities is None:
-            capabilities = {}
-        capabilities["browserName"] = browser_name
-        capabilities["version"] = browser_version
-        capabilities["name"] = test_name
-        return webdriver.Remote(command_executor=Grid.GRID_URL.format(host=Grid.GRID_HOST, port=grid_port),
-                                desired_capabilities=capabilities, options=options,
-                                browser_profile=browser_profile)

@@ -5,7 +5,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from framework.singleton import Singleton
 from framework.utils.logger import Logger
 from framework.waits.wait_for_custom_event import WaitForCustomEvent
-from framework.waits.wait_for_ready_state_complete import WaitForReadyStateComplete
 from framework.waits.wait_for_true_with_action import WaitForTrueWithAction
 from tests.config.browser import BrowserConfig
 from tests.config.waits import Waits
@@ -131,9 +130,6 @@ class Browser(metaclass=Singleton):
     def switch_to_default_content(self):
         Logger.info("Переключение на главный фрейм")
         self.get_driver().switch_to_default_content()
-
-    def wait_for_page_to_load(self):
-        WebDriverWait(self.get_driver(), Waits.PAGE_LOAD_TIMEOUT_SEC).until(WaitForReadyStateComplete(browser=self))
 
     def wait_for_custom_event(self, event, expected_result, *args, time_in_seconds=Waits.IMPLICITLY_WAIT_SEC, msg=""):
         waiter = WaitForCustomEvent(event, expected_result, *args)

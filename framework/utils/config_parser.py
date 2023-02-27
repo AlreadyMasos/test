@@ -1,6 +1,4 @@
 import json
-import os
-import sys
 from framework.singleton import Singleton
 
 
@@ -15,3 +13,6 @@ class ConfigParser(metaclass=Singleton):
         if self.config is None:
             self.open_config()
         return self.config
+
+
+config = ConfigParser().get_config()

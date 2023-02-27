@@ -1,6 +1,7 @@
 import requests
 from config.conftest import start_test, end_test
+from framework.utils.config_parser import config
 
 
 def test(start_test, end_test):
-    page = requests.get('http://localhost:3000/user/login')
+    assert requests.get(config['base_url']).status_code == 200

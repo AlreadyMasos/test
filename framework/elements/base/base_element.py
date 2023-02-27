@@ -13,7 +13,7 @@ from tests.config.waits import Waits
 
 class BaseElement(object):
 
-    def __init__(self, search_condition_of, loc, name_of):
+    def __init__(self, search_condition_of: str, loc: str, name_of: str):
         self.__search_condition = search_condition_of
         self.__locator = loc
         self.__name = name_of
@@ -23,7 +23,6 @@ class BaseElement(object):
             raise TypeError("__getitem__ for BaseElement possible only when __search_condition == By.XPATH")
         else:
             return type(self)(By.XPATH, self.__locator + "[" + str(key) + "]", self.__name)
-            # return type(self)(By.XPATH, "(" + self.__locator + ")" + "[" + str(key) + "]", self.__name)
 
     def __call__(self, sublocator, new_name_of=None):
         if new_name_of is not None:

@@ -6,5 +6,6 @@
   "script_timeout_sec": 10,
   "explicitly_wait_sec": 10,
   "autoit_wait_sec" : 2,
-  "token" : ""
+  "token": "",
+  "base_url": "https://reqres.in/"
 }
