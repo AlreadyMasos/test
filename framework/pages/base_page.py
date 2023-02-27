@@ -4,12 +4,12 @@ from framework.utils.logger import Logger
 
 
 class BasePage:
-    def __init__(self, search_condition, locator, page_name):
+    def __init__(self, search_condition: str, locator: str, page_name: str) -> None:
         self.locator = locator
         self.page_name = page_name
         self.search_condition = search_condition
 
-    def wait_page_to_load(self):
+    def wait_page_to_load(self) -> None:
         Logger.info("Ожидание загрузки страницы " + self.page_name + " с помощью js")
         Browser.get_browser().wait_for_page_to_load()
 
@@ -19,12 +19,7 @@ class BasePage:
         return Browser.get_browser().is_wait_successful(
             Label(self.search_condition, self.locator, self.page_name).wait_for_is_visible)
 
-    def wait_for_page_closed(self):
-        self.wait_page_to_load()
-        return Browser.get_browser().is_wait_successful(
-            Label(self.search_condition, self.locator, self.page_name).wait_for_is_absent)
-
-    def wait_for_page_opened(self):
+    def wait_for_page_opened(self) -> None:
         Logger.info("Ожидание загрузки страницы " + self.page_name + " и видимости идентифицирующего ее элемента")
         self.wait_page_to_load()
         Label(self.search_condition, self.locator, self.page_name).wait_for_is_visible()
