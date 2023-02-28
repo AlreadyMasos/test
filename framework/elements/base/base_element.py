@@ -116,3 +116,4 @@ class BaseElement(object):
             Logger.warning(result_message)
             raise TimeoutException(result_message)
         return element
+    

@@ -2,6 +2,7 @@ from framework.pages.base_page import BasePage
 from framework.elements.text_box import TextBox
 from framework.utils.string_util import set_random_string
 from framework.elements.button import Button
+import ast
 
 
 class HomePage(BasePage):
@@ -12,8 +13,12 @@ class HomePage(BasePage):
                          self.RESPONSE.get_name())
 
     RESPONSE = TextBox('xpath',
-                       '//class="response-code"',
+                       '//span[@class="response-code"]',
                        'response code')
+
+    RESPONSE_DATA = TextBox('xpath',
+                            '//pre[@data-key="output-response"]',
+                            'response data')
 
     GET_LIST_USERS = Button('xpath',
                             '//li[@data-id="users"]',
@@ -77,3 +82,6 @@ class HomePage(BasePage):
 
     def check_code(self, code: str) -> bool:
         return self.get_response_status_code() == code
+
+    def get_dict_response(self):
+        return ast.literal_eval(self.RESPONSE_DATA.get_text())

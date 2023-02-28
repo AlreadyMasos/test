@@ -1,5 +1,6 @@
 import requests
 from framework.utils.config_parser import config
+import ast
 
 
 class API:
@@ -26,6 +27,9 @@ class API:
     def patch(self, url: str, body: dict) -> requests.Response:
         self._response = requests.patch(config["base_url"] + url, data=body)
         return self._response
+
+    def get_text_response(self) -> str:
+        return ast.literal_eval(self._response.text)
 
     def get_status_code(self) -> str:
         return self._response.status_code
