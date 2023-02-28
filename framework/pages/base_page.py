@@ -13,7 +13,7 @@ class BasePage:
         Logger.info("Ожидание загрузки страницы " + self.page_name + " с помощью js")
         Browser.get_browser().wait_for_page_to_load()
 
-    def is_opened(self):
+    def is_opened(self) -> bool:
         Logger.info("Проверка, открыта ли страница " + self.page_name)
         self.wait_page_to_load()
         return Browser.get_browser().is_wait_successful(
@@ -23,4 +23,3 @@ class BasePage:
         Logger.info("Ожидание загрузки страницы " + self.page_name + " и видимости идентифицирующего ее элемента")
         self.wait_page_to_load()
         Label(self.search_condition, self.locator, self.page_name).wait_for_is_visible()
-

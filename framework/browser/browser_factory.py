@@ -13,7 +13,8 @@ from tests.config.browser import BrowserConfig
 class BrowserFactory:
 
     @staticmethod
-    def get_browser_driver(capabilities=None, is_incognito=False, enable_performance_logging=False):
+    def get_browser_driver(capabilities: dict | None = None,
+                           is_incognito: bool = False, enable_performance_logging: bool = False):
         if capabilities is None:
             capabilities = {}
         if BrowserConfig.BROWSER == browsers.BROWSER_CHROME:

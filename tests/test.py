@@ -12,4 +12,3 @@ def test(start_test, end_test, name, code):
     home_page = HomePage()
     home_page.click_on_button_by_name(name)
     home_page.check_code(code)
-

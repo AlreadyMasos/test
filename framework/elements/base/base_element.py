@@ -18,13 +18,13 @@ class BaseElement(object):
         self.__locator = loc
         self.__name = name_of
 
-    def __getitem__(self, key):
+    def __getitem__(self, key: str):
         if self.__search_condition != By.XPATH:
             raise TypeError("__getitem__ for BaseElement possible only when __search_condition == By.XPATH")
         else:
             return type(self)(By.XPATH, self.__locator + "[" + str(key) + "]", self.__name)
 
-    def __call__(self, sublocator, new_name_of=None):
+    def __call__(self, sublocator: str, new_name_of: str | None = None):
         if new_name_of is not None:
             return type(self)(By.XPATH, self.__locator + sublocator, new_name_of)
         else:
@@ -45,7 +45,7 @@ class BaseElement(object):
         return element
 
     def click(self) -> None:
-        Logger.info("click: Щелчок по элемету '" + self.get_name() + " " + self.__class__.__name__ + "'")
+        Logger.info("click: Щелчок по элементу '" + self.get_name() + " " + self.__class__.__name__ + "'")
 
         def func():
             self.find_element().click()
@@ -65,7 +65,7 @@ class BaseElement(object):
         return WebDriverWait(Browser.get_browser().get_driver(), Waits.EXPLICITLY_WAIT_SEC,
                              ignored_exceptions=[StaleElementReferenceException]).until(func)
 
-    def send_keys_to_element(self, keys) -> None:
+    def send_keys_to_element(self, keys: str) -> None:
         actions = ActionChains(Browser.get_browser().get_driver())
         actions.send_keys_to_element(self.find_element(), keys)
         actions.perform()

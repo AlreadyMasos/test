@@ -12,7 +12,7 @@ class HomePage(BasePage):
                          self.RESPONSE.get_name())
 
     RESPONSE = TextBox('xpath',
-                       'class="response-code"',
+                       '//class="response-code"',
                        'response code')
 
     GET_LIST_USERS = Button('xpath',
