@@ -2,7 +2,7 @@ import random
 import string
 
 
-def get_random_password_and_email() -> tuple[str]:
+def get_random_password_and_email() -> tuple:
     lower_alphabet = list(string.ascii_lowercase)
     upper_alphabet = list(string.ascii_uppercase)
     cyrillic_alphabet = 'АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя'

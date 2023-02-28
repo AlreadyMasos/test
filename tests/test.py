@@ -15,8 +15,17 @@ def test_status_code(start_test, end_test, name, code):
     assert home_page.check_code(code)
 
 
-def test_check_api(start_test, end_test):
+@pytest.mark.parametrize('endpoint, result', [])
+def test_check_api_positive(start_test, end_test, endpoint, result):
     page = HomePage()
     api = API()
-    api.get('api/users?page=2')
+    api.get(endpoint)
+    assert page.get_dict_response() == api.get_text_response()
+
+
+@pytest.mark.parametrize('endpoint, result', [])
+def test_check_api_negative(start_test, end_test, result, endpoint):
+    page = HomePage()
+    api = API()
+    api.get(endpoint)
     assert page.get_dict_response() == api.get_text_response()
