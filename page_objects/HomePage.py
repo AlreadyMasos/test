@@ -22,51 +22,63 @@ class HomePage(BasePage):
 
     GET_LIST_USERS = Button('xpath',
                             '//li[@data-id="users"]',
-                            'first')
+                            '1')
 
     GET_SINGLE_USER = Button('xpath',
                              '//li[@data-id="users-single"]',
-                             'second')
+                             '2')
 
     GET_SINGLE_USER_NOT_FOUND = Button('xpath',
                                        '//li[@data-id="users-single"]',
-                                       'get list users btn')
+                                       '3')
+
+    LIST_RES = Button('xpath',
+                      '//li[@data-id="unknown"]',
+                      '4')
+
+    SINGLE_RES = Button('xpath',
+                        '//li[@data-id="unknown-single"]',
+                        '5')
+
+    SINGLE_NOT_FOUND = Button('xpath',
+                              '//li[@data-id="unknown-single-not-found"]',
+                              '6')
 
     POST = Button('xpath',
                   '//li[@data-id="post"]',
-                  'create user button')
+                  '7')
 
     PUT = Button('xpath',
                  '//li[@data-id="put"]',
-                 'update user button')
+                 '8')
 
     PATCH = Button('xpath',
                    '//li[@data-id="patch"]',
-                   'patch user button')
+                   '9')
 
     DELETE = Button('xpath',
                     '//li[@data-id="delete"]',
-                    'delete user button')
+                    '10')
 
     REG_SUC = Button('xpath',
                      '//li[@data-id="register-successful"]',
-                     'successful reg')
+                     '11')
 
     REG_UNSUC = Button('xpath',
                        '//li[@data-id="register-unsuccessful"]',
-                       'unsuccessful reg')
+                       '12')
 
     LOGIN_SUC = Button('xpath',
                        '//li[@data-id="login-successful"]',
-                       'successful login')
+                       '13')
 
     LOGIN_UNSUC = Button('xpath',
                          '//li[@data-id="login-unsuccessful"]',
-                         'unsuccessful login')
+                         '14')
 
     DELAYED_RESPONSE = Button('xpath',
                               '//li[@data-id="delay"]',
-                              'delay response')
+                              '15')
 
     LIST_OF_ALL_BUTTONS = [GET_LIST_USERS, GET_SINGLE_USER_NOT_FOUND,
                            POST, DELETE, REG_SUC, REG_UNSUC,

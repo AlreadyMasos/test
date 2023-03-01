@@ -28,7 +28,7 @@ class API:
         self._response = requests.patch(config["base_url"] + url, data=body)
         return self._response
 
-    def get_text_response(self) -> str:
+    def get_text_response(self) -> dict:
         return ast.literal_eval(self._response.text)
 
     def get_status_code(self) -> str:

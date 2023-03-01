@@ -4,7 +4,7 @@ from .base.base_element import BaseElement
 
 class Button(BaseElement):
 
-    def __init__(self, search_condition, locator, name) -> None:
+    def __init__(self, search_condition: str, locator: str, name: str) -> None:
         super(Button, self).__init__(search_condition_of=search_condition, loc=locator, name_of=name)
 
     def __getitem__(self, key: str):

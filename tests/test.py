@@ -1,31 +1,31 @@
 import requests
 from config.conftest import start_test, end_test
-from framework.utils.config_parser import config
+from framework.utils.string_util import check_dict_equals
 from page_objects.HomePage import HomePage
 from framework.API.api import API
+from test_data.test_data import *
 import pytest
 
 
-@pytest.mark.parametrize("name, code", [('first', '200'),
-                                        ('second', '200')])
-def test_status_code(start_test, end_test, name, code):
-    assert requests.get(config['base_url']).status_code == 200
+@pytest.mark.parametrize('name, endpoint', GET_DATA)
+def test_check_get_api(start_test, end_test, endpoint, name):
+    page = HomePage()
+    api = API()
+    api.get(endpoint)
+    page.click_on_button_by_name(name)
+    assert check_dict_equals(page.get_dict_response(), api.get_text_response())
+
+
+@pytest.mark.parametrize('body, endpoint, status_code, result', POST_DATA)
+def test_check_api_post(body, endpoint, status_code, result):
+    api = API()
+    api.post(endpoint, body)
+    assert api.get_status_code() == status_code
+    assert check_dict_equals(result, api.get_text_response())
+
+
+@pytest.mark.parametrize("name, code", FIRST_TEST_DATA)
+def ui_tests(start_test, end_test, name, code):
     home_page = HomePage()
     home_page.click_on_button_by_name(name)
     assert home_page.check_code(code)
-
-
-@pytest.mark.parametrize('endpoint, result', [])
-def test_check_api_positive(start_test, end_test, endpoint, result):
-    page = HomePage()
-    api = API()
-    api.get(endpoint)
-    assert page.get_dict_response() == api.get_text_response()
-
-
-@pytest.mark.parametrize('endpoint, result', [])
-def test_check_api_negative(start_test, end_test, result, endpoint):
-    page = HomePage()
-    api = API()
-    api.get(endpoint)
-    assert page.get_dict_response() == api.get_text_response()

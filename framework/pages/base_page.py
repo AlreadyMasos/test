@@ -1,6 +1,6 @@
 from framework.browser.browser import Browser
-from framework.elements.label import Label
 from framework.utils.logger import Logger
+from framework.elements.text_box import TextBox
 
 
 class BasePage:
@@ -17,9 +17,9 @@ class BasePage:
         Logger.info("Проверка, открыта ли страница " + self.page_name)
         self.wait_page_to_load()
         return Browser.get_browser().is_wait_successful(
-            Label(self.search_condition, self.locator, self.page_name).wait_for_is_visible)
+            TextBox(self.search_condition, self.locator, self.page_name).wait_for_is_visible)
 
     def wait_for_page_opened(self) -> None:
         Logger.info("Ожидание загрузки страницы " + self.page_name + " и видимости идентифицирующего ее элемента")
         self.wait_page_to_load()
-        Label(self.search_condition, self.locator, self.page_name).wait_for_is_visible()
+        TextBox(self.search_condition, self.locator, self.page_name).wait_for_is_visible()

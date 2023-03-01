@@ -9,3 +9,7 @@ def set_random_string(length):
 
 def set_random_email(length):
     return set_random_string(length)+'@gmail.com'
+
+
+def check_dict_equals(first: dict, second: dict):
+    return first == second
